@@ -4,7 +4,11 @@ class Home extends BaseController
 {
 	public function index()
 	{
-		return view('welcome_message');
+		$db = \Config\Database::connect();
+		$query = $db->query('SELECT * from test');
+		$results = $query->getResult();
+		$results['results'] = $results;
+		return view('index', $results);
 	}
 
 	//--------------------------------------------------------------------
